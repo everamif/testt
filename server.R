@@ -1,28 +1,3 @@
-library(shiny)
-library(DT)
-
-this_table = data.frame(bins = c(30, 50), cb = c(T, F))
-
-ui <- fluidPage(
-  
-  sidebarLayout(
-    sidebarPanel(
-      sliderInput("bins",
-                  "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30),
-      checkboxInput("cb", "T/F"),
-      actionButton("add_btn", "Add"),
-      actionButton("delete_btn", "Delete")
-    ),
-    
-    mainPanel(
-      DTOutput("shiny_table")
-    )
-  )
-)
-
 server <- function(input, output) {
   
   this_table <- reactiveVal(this_table)
@@ -47,4 +22,3 @@ server <- function(input, output) {
   })
 }
 
-shinyApp(ui = ui, server = server)
